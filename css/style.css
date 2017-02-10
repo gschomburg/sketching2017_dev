@@ -1,0 +1,140 @@
+/*
+--------------------mockup
+*/
+
+.place-holder{
+	background-color: black;
+	/*border: 1px solid red;*/
+}
+
+/*
+--------------------format
+*/
+
+body{
+	background-color: #eeff16;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 18px;
+	margin: 0;
+}
+
+.details{
+	font-size: 24px;
+}
+
+h1{
+	font-weight: 400;
+	font-style: italic;
+	margin: 0;
+}
+
+.two-col.inline-square:before{
+	content:'';
+	float:left;
+	padding-top:100%;
+}
+
+.section{
+	margin: auto;
+	width: 100%;
+}
+.container{
+	padding: 10px 10px 20px 10px;
+	max-width: 900px;
+	margin: auto;
+}
+
+.cols{
+	display: flex;
+
+}
+.two-col{
+	flex:1 1 50%;
+	padding-right: 10px;
+}
+
+/*
+--------------------thress js
+*/
+
+.over-3d{
+	z-index: 2;
+	position: relative;
+}
+
+/*
+--------------------header
+*/
+#header-graphic{
+	text-align: center;
+	width: 1100px;
+	height: 400px;
+	max-width: 1100px;
+	padding-top: 0px;
+}
+
+#a-summit{
+	width: 78%;
+}
+
+/*
+--------------------location
+*/
+
+.location{
+	margin-bottom: 10px;
+}
+.location span{
+	display: block;
+}
+
+#map{
+	height: 600px;
+}
+
+/*
+--------------------sponsors
+*/
+.sponsor{
+	margin-bottom: 10px;
+}
+.logo{
+	background-color: red;
+	width:200px;
+	height: 200px;
+	float: left;
+	margin-right: 10px;
+}
+
+/*
+--------------------archive
+*/
+#archive-graphics{
+	height: 300px;
+}
+ul{
+	list-style: none;
+	padding:0px;
+}
+
+.bg-white{
+	background-color: #fff2db;
+}
+.bg-mustard{
+	background-color: #eeff16;
+}
+.bg-sam{
+	background-color: #da627d;
+}
+.bg-samdark{
+	background-color: #94072d;
+}
+.bg-blue{
+	background-color: #36a3eb;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}

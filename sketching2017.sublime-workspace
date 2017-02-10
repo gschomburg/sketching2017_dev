@@ -1,0 +1,639 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"margin",
+				"margin"
+			],
+			[
+				"marg",
+				"margin-right"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"Th",
+				"THREE"
+			],
+			[
+				"ge",
+				"geometry"
+			],
+			[
+				"rand",
+				"randRange"
+			],
+			[
+				"ali",
+				"text-align"
+			],
+			[
+				"paddin",
+				"padding-right"
+			],
+			[
+				"i",
+				"italic"
+			],
+			[
+				"font",
+				"font-style"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"scree",
+				"SCREEN_HEIGHT"
+			],
+			[
+				"col",
+				"color"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"flex",
+				"flex"
+			],
+			[
+				"background-c",
+				"background-color"
+			],
+			[
+				"flex-",
+				"flex-grow"
+			],
+			[
+				"fle",
+				"flex-basis"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"mr",
+				"margin"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 8035,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "css/style.css",
+			"settings":
+			{
+				"buffer_size": 1556,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/main.js",
+			"settings":
+			{
+				"buffer_size": 3402,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/map.js",
+			"settings":
+			{
+				"buffer_size": 1115,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "demo__1/index.html",
+			"settings":
+			{
+				"buffer_size": 7292,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 588.0,
+		"last_filter": "pack",
+		"selected_items":
+		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 600.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/dev",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/dev/css",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/dev/demo__1",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/dev/js"
+	],
+	"file_history":
+	[
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/dev/fbx.html",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/dev/index.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/hermanmiller.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/escape.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/bnswebsite.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/polandspring.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/gemosaic.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/accenture.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/paintchat.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/ibm.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/ebay.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/tsfim.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/sketching-in-hardware.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/gregfont.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/bnsprototypes.html",
+		"/C/Users/gschomburg/AppData/Local/Temp/7zO06B9AA97/README.md",
+		"/C/Users/gschomburg/AppData/Local/Temp/7zO06B8FB3F/README.md",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/vsseries.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/3studios.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/s3iz.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/sketch.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/sketches.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/serahstar.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/twominuteposters.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/mcad.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/drawbot.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/cth.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/diffa.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/combscript.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/brizo.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects.json",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/gregfonts.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/js/project.js",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/css/style.css",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/disasterblaster.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/featherlight/featherlight.min.js",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/js/main.js",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/js/vimeo-player.js",
+		"/C/Users/gschomburg/Documents/Projects/cairn/cairn_unity/Assets/MergeScene.unity",
+		"/C/Users/gschomburg/.gitconfig",
+		"/C/Users/gschomburg/AppData/Roaming/Sublime Text 3/Packages/User/SublimeServer.sublime-settings",
+		"/C/Users/gschomburg/Documents/Projects/krakinos_dev/Karkinos/Assets/ViveGrip/Examples/README.md",
+		"/C/Users/gschomburg/Documents/Projects/krakinos_dev/Karkinos/Assets/ViveGrip/Examples/EXTENSIONS.md",
+		"/C/Users/gschomburg/Documents/Libs/ViveGrip/README.md",
+		"/C/Users/gschomburg/AppData/Local/Temp/7zO89ED11A2/.gitignore",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/featherlight/featherlight.min.css",
+		"/C/Users/gschomburg/AppData/Local/Temp/7zO0209C1B4/README.md",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/notes.todo",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/index.html",
+		"/C/Users/gschomburg/AppData/Local/Temp/7zO8D8D56D3/README.md",
+		"/C/Users/gschomburg/AppData/Local/Temp/7zO8D8B8C10/README.md",
+		"/C/Users/gschomburg/Documents/Projects/Playgrounds/.gitignore",
+		"/C/Users/gschomburg/AppData/Local/Temp/7zO87E97F33/README.md",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/.gitignore",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/notes.txt",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/detail.html",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/testProject.jade",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/html/projects/projectTemplate.jade",
+		"/C/Users/gschomburg/Documents/Projects/gregnet/gulp.js"
+	],
+	"find":
+	{
+		"height": 50.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			";\n",
+			"200",
+			"100",
+			"const",
+			"containter",
+			"SCREEN_HEIGHT",
+			"SCREEN_WIDTH",
+			"obj/",
+			"obj",
+			"  ",
+			"<li>",
+			"Interactive",
+			"sagittis",
+			"accenture_08",
+			"accenture_15",
+			"accenture_01",
+			"t_",
+			"ebay_04",
+			"ebay_05",
+			"ebay_10",
+			"gemosaic",
+			"t_",
+			"polandspring_10",
+			"t_",
+			"ibm_02",
+			"ibm_10",
+			"gemosaic",
+			"absolute",
+			"li",
+			"paintchat_05",
+			"paintchat_04",
+			"paintchat_05",
+			"paintchat_10",
+			"gemosaic",
+			" src=\"acip/acip",
+			"aicp",
+			"aicp_01",
+			"Slab",
+			"gregfont_02",
+			"3studios_08",
+			"gemosaic",
+			"sketch_02",
+			"gemosaic",
+			"vsseries_01",
+			"vsseries_10",
+			"gemosaic",
+			"tsfim_",
+			"tsfim_04",
+			"tsfim_10",
+			"gemosaic",
+			"2minposters_10",
+			"2minposters_01",
+			"2minposters_10",
+			"gemosaic",
+			"<!",
+			"s3iz_01",
+			"s3iz_10",
+			"gemosaic",
+			"01",
+			"gemosaic",
+			"mcad_10",
+			"mcad_",
+			"mcad_09",
+			"mcad_02",
+			"mcad_09",
+			"mcad_04",
+			"diffa",
+			"\",\n",
+			"hermanmiller_01",
+			"hermanmiller_10",
+			"gemosaic",
+			"gregfont_10",
+			"gregfont_04",
+			"gregfont_10",
+			"gemosaic",
+			"01",
+			"gemosaic",
+			"10",
+			"gemosaic",
+			"10",
+			"gemosaic",
+			"10",
+			"gemosaic",
+			"web_",
+			"web_01",
+			"gemosaic",
+			"bns_prototypes_",
+			"gemosaic",
+			"accenture_06",
+			"03",
+			"10",
+			"gemosaic",
+			"<<<<<<<",
+			"db_01",
+			"data-featherlight=\"image\"",
+			"data-featherlight=\"",
+			"/gemosaic",
+			"_07",
+			"sketching",
+			"<<<",
+			"ge_01",
+			"ge_splash",
+			"<li>",
+			"BNS",
+			"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+			"xxxxxxxxxxxxxxxxxxxxxxx",
+			"x.jpg",
+			".tiles"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "C:\\Users\\gschomburg\\Documents\\Projects\\SketchingInHardware2017\\dev"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8035,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5474,
+								5474
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3051.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1556,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1222,
+								1205
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/CSS/CSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2187.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3402,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								81,
+								81
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "js/map.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1115,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								366,
+								366
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "demo__1/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7292,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								557,
+								557
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 135.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 586.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Jade Build/Jade.sublime-build",
+	"project": "",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 430.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
