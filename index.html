@@ -8,6 +8,7 @@
 	<script src='https://api.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet' />
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -18,7 +19,7 @@
 	</div>
 	<div class="section">
 		<div class="container">
-			<img class="over-3d" src="images/sketchinginhardware.svg">
+			<!-- <img class="over-3d" src="images/sketchinginhardware.svg"> -->
 			<img id="a-summit" src="images/a_summit.svg">
 			<div class="details">
 				Radical Hardware<br/>
@@ -27,7 +28,7 @@
 			</div>
 			<p>Technology is not neutral. Tools are not neutral. Every tool has, within it, an envelope of end results that it enables easily and others for which it creates friction. Some of those effects intentional, some are not, especially in the complex world of computational, information processing tools that sense the world and act on it directly. How do we make tools that make it easier to have a positive impact on the world than a negative? Simply making technology easier or cheaper does not necessarily make it better, and good design is not the same as design for good.
 			<p>As in past years, Sketching will still primarily focus on tools for physical computing/Internet of Things prototyping. I expect to talk about how to make hardware more accessible, how to make our tools better, how to use them in more interesting ways, and how to teach with them. In addition, I would like to look at our hardware tools through the lens of their effects, their envelopes of possibility, in addition to their construction.
-			<p>The meeting will include presentations by all attendees, new technologies to try, and many opportunities to meet others and t  lk about this emerging field.
+			<p>The meeting will include presentations by all attendees, new technologies to try, and many opportunities to meet others and talk about this emerging field.
 		</div>
 	</div>
 	<div class="section bg-mustard">
@@ -42,8 +43,8 @@
 					<p>charrette is a term I’m borrowing from architecture as an alternative to “hackathon.” I plan for it to be similar to a hackathon, but with a tighter focus. It’s likely to feature a combination of visits to Detroit locations, presentations by Detroit experts, and the opportunity to spend all night talking/designing/inventing.
 					<p>Quisque facilisis maximus faucibus. Suspendisse sed neque ipsum. Nulla rutrum quam et dolor sollicitudin bibendum. Proin imperdiet viverra augue commodo facilisis. Mauris arcu diam, auctor pellentesque mi id, sodales sollicitudin sapien. Aenean finibus urna eu tellus volutpat, sit amet fermentum elit interdum. Mauris euismod massa libero, imperdiet sollicitudin lacus elementum ut. Nam et ante mollis, condimentum lectus nec, dictum turpis. Duis commodo porttitor condimentum. Vivamus aliquam laoreet venenatis. Sed id imperdiet enim. Phasellus dictum ex erat, nec cursus neque vehicula id. Sed at eleifend velit, et porttitor lectus. Donec quis leo id risus tempor commodo vel a sem. Nunc cursus condimentum nunc eget hendrerit.
 				</div>
-				<div class="two-col inline-square place-holder">
-					<div class="">
+				<div class="two-col inline-square">
+					<div class="" id="charrette-graphic">
 						&nbsp;
 					</div>
 				</div>
@@ -155,7 +156,94 @@
 		</div>
 	</div>
 </div>
+<script id="vertexshader" type="x-shader/x-vertex">
+	// create a shared variable for the
+	// VS and FS containing the normal
+	uniform float amplitude;
+	attribute float displacement;
+	varying vec3 vNormal;
+	varying vec2 vUv;
+
+	vec2 computeTexUV(vec2 _uv, vec3 _normal){
+
+		float u = atan(_normal.z, _normal.x) / (2.0 * 3.1415926) + 0.5;
+		float v = asin(_normal.y) / 3.1415926 + 0.5;
+		return vec2(u,v);
+		// return _uv;
+	}
+
+	void main() {
+		
+		// set the vNormal value with
+		// the attribute value passed
+		// in by Three.js
+		//*
+		vNormal = normalize( normalMatrix * normal );
+		vUv = computeTexUV(uv, vNormal);
+
+		gl_Position = projectionMatrix *
+			modelViewMatrix *
+			vec4(position, 1.0);
+			//*/
+	    //mat4 mvp = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+		// mat3 normalMatrix = mat3(projectionMatrix * modelViewMatrix * position);
+		// normalMatrix = inverse(normalMatrix);
+		// normalMatrix = transpose(normalMatrix);
+		// vNormal = normalize(normal * normalMatrix);
+		// // You should also send your tranformed position to the fragment shader
+		// f_position = vec3(mvp * vec4(position, 1.0));
+	}
+</script>
+<script id="fragmentshader" type="x-shader/x-fragment">
+	// same name and type as VS
+	varying vec3 vNormal;
+	varying vec2 vUv;
+	uniform sampler2D texture1;
+
+	vec2 computeTexUV(vec3 _normal){
+		
+
+		float u = atan(_normal.x, _normal.z) / (2. * 3.1415926) + 0.5;
+		float v = asin(_normal.y) / 3.1415926 + 0.5;
+		return vec2(u,v);
+
+	}
+
+	void main() {
+
+	  // calc the dot product and clamp
+	  // 0 -> 1 rather than -1 -> 1
+	  /*
+	  vec3 light = vec3(0.5, 0.2, 1.0);
+
+	  // ensure it's normalized
+	  light = normalize(light);
+
+	  // calculate the dot product of
+	  // the light to the vertex normal
+	  float dProd = max(0.0,
+	                    dot(vNormal, light));
+	   */
+
+	  // feed into our frag colour
+	  // gl_FragColor = vec4((vNormal.x+1.0)*.5, // R
+	  //                     (vNormal.y+1.0)*.5, // G
+	  //                     (vNormal.z+1.0)*.5, // B
+	  //                     1.0);  // A
+	  // gl_FragColor = vec4(0.5, 0.2, 1.0, 1.0);
+	  //gl_FragColor = texture2D(texture1, vUv);
+
+	  gl_FragColor = texture2D(texture1, computeTexUV(vNormal));
+	  //gl_FragColor.rgb = vNormal;
+	//gl_FragColor.rgba = vec4(0., 0., 0., 1.);
+	 	// gl_FragColor.a = 1.;
+ 	//	gl_FragColor.rg = computeTexUV(vNormal).xy;
+//
+
+	}
+</script>
 <script src="libs/three.min.js"></script>
+<script src="libs/OBJLoader.js"></script>
 <script src="js/main.js"></script>
 <script src="js/map.js"></script>
 </body>

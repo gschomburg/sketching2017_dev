@@ -138,15 +138,6 @@
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
-		},
-		{
-			"file": ".gitignore",
-			"settings":
-			{
-				"buffer_size": 660,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
 		}
 	],
 	"build_system": "",
@@ -190,6 +181,7 @@
 	],
 	"file_history":
 	[
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/.gitignore",
 		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/demo__1/index.html",
 		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/dev/fbx.html",
 		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/dev/index.html",
@@ -392,7 +384,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -422,7 +414,7 @@
 						"translation.y": 3051.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -452,7 +444,7 @@
 						"translation.y": 2187.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -481,7 +473,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -497,8 +489,8 @@
 						"selection":
 						[
 							[
-								246,
-								246
+								370,
+								370
 							]
 						],
 						"settings":
@@ -510,34 +502,6 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": ".gitignore",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 660,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								351,
-								351
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 324.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
