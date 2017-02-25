@@ -244,7 +244,7 @@ var uniforms = {};
 //load in texture for uniforms
 //*
 var uniforms = {
-    texture1: { type: "t", value: colorMapLoader.load( assetsPath + 'cubecolormap4.jpg' , function (texture) {
+    texture1: { type: "t", value: colorMapLoader.load( assetsPath + 'color_v1.jpg' , function (texture) {
     	texture.wrapS = THREE.RepeatWrapping;
     	texture.wrapT = THREE.RepeatWrapping;
     	texture.minFilter = THREE.LinearFilter;
@@ -332,19 +332,19 @@ function update () {
 	bSin += .01;
 	cSin += .008;
 	//mess with sketching text
-	if(mesh_sketching){
-		// mesh_sketching.rotation.x += 1 * scaler;
-		mesh_sketching.rotation.x -= Math.cos(aSin) * .003;
-		mesh_sketching.rotation.y += Math.sin(aSin) * .001;
-		// mesh_sketching.rotation.z += .5 * scaler;
-		// mesh_in.rotation.y += 1 * scaler;
-		// mesh_hardware.rotation.y += 1 * scaler;
-		mesh_in.rotation.x += Math.cos(bSin) * .001;
-		mesh_in.rotation.y -= Math.sin(bSin) * .001;
-		mesh_hardware.rotation.x += Math.cos(cSin) * .001;
-		mesh_hardware.rotation.y += Math.sin(cSin) * .002;
+	// if(mesh_sketching){
+	// 	// mesh_sketching.rotation.x += 1 * scaler;
+	// 	mesh_sketching.rotation.x -= Math.cos(aSin) * .003;
+	// 	mesh_sketching.rotation.y += Math.sin(aSin) * .001;
+	// 	// mesh_sketching.rotation.z += .5 * scaler;
+	// 	// mesh_in.rotation.y += 1 * scaler;
+	// 	// mesh_hardware.rotation.y += 1 * scaler;
+	// 	mesh_in.rotation.x += Math.cos(bSin) * .001;
+	// 	mesh_in.rotation.y -= Math.sin(bSin) * .001;
+	// 	mesh_hardware.rotation.x += Math.cos(cSin) * .001;
+	// 	mesh_hardware.rotation.y += Math.sin(cSin) * .002;
 		
-	}
+	// }
 	
 	// testsphere.geometry.normalsNeedUpdate = true;
   // Schedule the next frame.

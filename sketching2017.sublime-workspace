@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"mesh",
+				"mesh_sketching"
+			],
+			[
+				"comput",
+				"computeTexUV"
+			],
+			[
+				"tex",
+				"texture2D"
+			],
+			[
+				"gl_",
+				"gl_FragColor"
+			],
+			[
+				"shad",
+				"shaderMaterial"
+			],
+			[
+				"charre",
+				"charretteInstance"
+			],
+			[
+				"point",
+				"pointLight"
+			],
+			[
 				"margin",
 				"margin"
 			],
@@ -107,16 +135,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 8035,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "css/style.css",
-			"settings":
-			{
-				"buffer_size": 1556,
+				"buffer_size": 10542,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -125,7 +144,7 @@
 			"file": "js/main.js",
 			"settings":
 			{
-				"buffer_size": 3402,
+				"buffer_size": 8930,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -135,6 +154,15 @@
 			"settings":
 			{
 				"buffer_size": 1115,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "css/style.css",
+			"settings":
+			{
+				"buffer_size": 1556,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -177,10 +205,13 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev"
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/css"
 	],
 	"file_history":
 	[
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/libs/OBJLoader.js",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/css/style.css",
 		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/.gitignore",
 		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/demo__1/index.html",
 		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/dev/fbx.html",
@@ -259,6 +290,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"40",
+			"4",
+			"10",
+			"shaderMaterial",
+			"_normal",
+			"6",
+			"testsphereB",
+			"40",
+			"pointLight",
 			";\n",
 			"200",
 			"100",
@@ -384,7 +424,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -393,15 +433,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8035,
+						"buffer_size": 10542,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5474,
-								5474
+								868,
+								868
 							]
 						],
 						"settings":
@@ -411,57 +451,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3051.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "css/style.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1556,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1222,
-								1205
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2187.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "js/main.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3402,
+						"buffer_size": 8930,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								81,
-								81
+								3605,
+								3605
 							]
 						],
 						"settings":
@@ -470,14 +480,14 @@
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4002.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "js/map.js",
 					"semi_transient": false,
 					"settings":
@@ -489,8 +499,8 @@
 						"selection":
 						[
 							[
-								370,
-								370
+								531,
+								531
 							]
 						],
 						"settings":
@@ -504,7 +514,36 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1556,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								796,
+								796
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1044.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -512,7 +551,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 31.0
+		"height": 38.0
 	},
 	"input":
 	{
@@ -553,7 +592,7 @@
 	"project": "sketching2017.sublime-project",
 	"replace":
 	{
-		"height": 58.0
+		"height": 72.0
 	},
 	"save_all_on_build": true,
 	"select_file":
