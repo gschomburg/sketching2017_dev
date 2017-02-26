@@ -11,11 +11,41 @@
 --------------------format
 */
 
+/*
+red
+#ee564b
+
+yellow
+#feec6e
+
+green
+#31a6b8
+
+dark grey
+#3f4346
+white
+#f3f5f0
+*/
+
+.bg-white{
+	background-color: #f3f5f0;
+}
+.bg-mustard{
+	background-color: #feec6e;
+}
+.bg-sam{
+	background-color: #ee564b;
+}
+.bg-green{
+	background-color: #31a6b8;
+}
+
 body{
-	background-color: #eeff16;
+	background-color: #feec6e;
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 18px;
 	margin: 0;
+	color:#292c2d;
 }
 
 .details{
@@ -115,22 +145,6 @@ h1{
 ul{
 	list-style: none;
 	padding:0px;
-}
-
-.bg-white{
-	background-color: #fff2db;
-}
-.bg-mustard{
-	background-color: #eeff16;
-}
-.bg-sam{
-	background-color: #da627d;
-}
-.bg-samdark{
-	background-color: #94072d;
-}
-.bg-blue{
-	background-color: #36a3eb;
 }
 
 .clearfix:after {

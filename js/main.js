@@ -6,6 +6,28 @@ console.log("el");
 
 var threejsInstance = [];
 var assetsPath = "assets/";
+var parts = [];
+var partNames = 
+[
+// "parts_fan.obj",
+// "parts_gearbox.obj",
+// "parts_hydrant.obj",
+// "parts_pipebolt.obj",
+// "parts_pipebox.obj",
+// "parts_pipecapacitor.obj",
+// "parts_piston.obj",
+// "parts_tube01.obj",
+// "parts_tubehydrant.obj",
+// "parts_tubejunction.obj",
+//"parts_tubeweirdframe.obj"
+"parts_pipe_01.obj",
+"parts_pipe_02.obj",
+"parts_pipe_03.obj",
+"parts_box_01.obj"
+];
+var dupcount = 40;
+var headerParts = [];
+
 
 function createThreejsInstance(_container, _width, _height){
 	// Set the scene size.
@@ -127,6 +149,7 @@ var mesh_sketching;
 var mesh_in;
 var mesh_hardware;
 function initHeader(){
+	/*
 	for(var i=0; i<80; i++){
 		var s = addSphere(randRange(10, 40), .1, headerInstance);
 
@@ -137,22 +160,48 @@ function initHeader(){
 		s.rSpeed = new THREE.Vector3(randRange(-1,1), randRange(-1,1), randRange(-1,1));
 		spheres.push(s);
 	}
+	*/
+
+	for(var i=0;  i<parts.length; i++){
+		for(var c=0; c<dupcount; c++){
+			var obj = parts[i].clone();
+			obj.rSpd=randRange(-.5, .5);
+			headerParts.push(obj);
+			
+			var s =  randRange(.5, 2);
+			obj.scale.set(s,s,s);
+			obj.position.x = randRange(-10, 10);
+			obj.position.y = randRange(-5, 5);
+			obj.position.z = -20;
+			obj.rotation.x = randRange(-180, 180);
+			obj.rotation.y = randRange(-180, 180);
+			obj.rotation.z = randRange(-180, 180);
+
+
+			headerInstance.scene.add(obj);
+		}
+	}
+
+
+
+
+	// return;
 	//load in sketching text
 	var loader = new THREE.OBJLoader();
 
 	// load a resource
 	loader.load(
 		// resource URL
-		assetsPath+ 'sk2017_lockup_v2.obj',
+		assetsPath + 'sk2017_lockup_v2.obj',
 		// Function when resource is loaded
 		function ( object ) {
 			headerInstance.scene.add( object );
 			
 			
-			object.position.x = -20;
-			object.position.y = 20;
-			object.position.z = -250;
-			object.scale.set(100,100,100);
+			object.position.x = -0;
+			object.position.y = 0;
+			object.position.z = -15;
+			object.scale.set(5,5,5);
 			object.traverse( function ( child ) {
 
         		if ( child instanceof THREE.Mesh ) {
@@ -175,6 +224,45 @@ function initHeader(){
 			//object.material = shaderMaterial;
 		}
 	);
+}
+function partLoaded(object){
+	parts.push(object);
+	if(parts.length == partNames.length){
+		console.log('parts finished loaded');
+		initHeader();
+	}else{
+		console.log('still loading');
+	}
+}
+
+function loadPart(_name){
+	var partLoader = new THREE.OBJLoader();
+
+	// load a resource
+	partLoader.load(
+		// resource URL
+		assetsPath + _name,
+		function ( object ) {
+			// headerInstance.scene.add( object );
+			// object.position.x = -20;
+			// object.position.y = 20;
+			// object.position.z = -250;
+			// object.scale.set(100,100,100);
+			object.traverse( function ( child ) {
+
+        		if ( child instanceof THREE.Mesh ) {
+					child.material = shaderMaterial;
+				}
+
+			});
+			partLoaded(object);
+		}
+	);
+}
+function loadParts(){
+	for(var i=0; i<partNames.length; i++){
+		loadPart('parts/' + partNames[i]);
+	}
 }
 
 
@@ -244,7 +332,7 @@ var uniforms = {};
 //load in texture for uniforms
 //*
 var uniforms = {
-    texture1: { type: "t", value: colorMapLoader.load( assetsPath + 'color_v1.jpg' , function (texture) {
+    texture1: { type: "t", value: colorMapLoader.load( assetsPath + 'color_v3.jpg' , function (texture) {
     	texture.wrapS = THREE.RepeatWrapping;
     	texture.wrapT = THREE.RepeatWrapping;
     	texture.minFilter = THREE.LinearFilter;
@@ -290,8 +378,10 @@ function initCharrette(){
 }
 var testCubeA;
 $(document).ready(function(){
+	loadParts();
 	initCharrette();
-	initHeader();
+	
+
 	// Schedule the first frame.
 	requestAnimationFrame(update);
 });
@@ -309,8 +399,17 @@ function update () {
   	 threejsInstance[i].renderer.render(threejsInstance[i].scene, threejsInstance[i].camera);
 
   }
+
  // headerInstance.renderer.render(headerInstance.scene, headerInstance.camera);
-  var scaler=.01;
+  var scaler=.005;
+
+  for(var p=0; p<headerParts.length; p++){
+	headerParts[p].rotation.x += headerParts[p].rSpd * scaler;
+	headerParts[p].rotation.y += headerParts[p].rSpd * scaler;
+	headerParts[p].rotation.z += headerParts[p].rSpd * scaler;
+
+  }
+
   for(var s=0; s<spheres.length; s++){
 	spheres[s].rotation.x += spheres[s].rSpeed.x * scaler;
 	spheres[s].rotation.y += spheres[s].rSpeed.y * scaler;
