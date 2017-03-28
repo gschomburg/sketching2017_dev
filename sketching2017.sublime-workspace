@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"mat",
+				"Math"
+			],
+			[
+				"rotation",
+				"rotationAxis"
+			],
+			[
+				"Thre",
+				"THREE"
+			],
+			[
+				"header",
+				"headerParts"
+			],
+			[
+				"head",
+				"headerParts"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
 				"mesh",
 				"mesh_sketching"
 			],
@@ -135,25 +159,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 10542,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/main.js",
-			"settings":
-			{
-				"buffer_size": 8930,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/map.js",
-			"settings":
-			{
-				"buffer_size": 1115,
+				"buffer_size": 10593,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -162,7 +168,16 @@
 			"file": "css/style.css",
 			"settings":
 			{
-				"buffer_size": 1556,
+				"buffer_size": 1613,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/main.js",
+			"settings":
+			{
+				"buffer_size": 17520,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -175,16 +190,20 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 588.0,
-		"last_filter": "pack",
+		"height": 183.0,
+		"last_filter": "beau",
 		"selected_items":
 		[
+			[
+				"beau",
+				"Javascript Beautify"
+			],
 			[
 				"pack",
 				"Package Control: Install Package"
 			]
 		],
-		"width": 600.0
+		"width": 624.0
 	},
 	"console":
 	{
@@ -206,10 +225,22 @@
 	"expanded_folders":
 	[
 		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev",
-		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/css"
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/assets",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/css",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/js",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/libs"
 	],
 	"file_history":
 	[
+		"/C/Users/gschomburg/Documents/Projects/cairn_blog/docs/notes.md",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/js/map.js",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/assets/parts/connect_smooth002.obj",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/assets/parts/seg_005.obj",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/assets/parts/seg_005.fbx",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/assets/parts/seg_001.obj",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/assets/parts/seg_003.obj",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/assets/parts/seg_002.obj",
+		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/assets/parts/parts_pipe_02.obj",
 		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/libs/OBJLoader.js",
 		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/css/style.css",
 		"/C/Users/gschomburg/Documents/Projects/SketchingInHardware2017/sketching2017_dev/.gitignore",
@@ -290,6 +321,50 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"shaderMaterialLogotype",
+			"shaderMaterial",
+			"ShaderMaterial",
+			"shaderMaterial",
+			"ShaderMaterial",
+			"shaderMaterial",
+			"amplitude",
+			"shaderMaterial",
+			"bPosition",
+			"axis",
+			"normal",
+			"normal3",
+			"segment",
+			"treeComplexity",
+			"s",
+			"segment",
+			"d",
+			"rotationAxis",
+			"headerParts",
+			"dupcount",
+			"map",
+			"rotation",
+			"normal.array",
+			"partNames",
+			"load",
+			"Load",
+			"load",
+			"Load",
+			"load",
+			"Load",
+			"load",
+			"Load",
+			"load",
+			"Load",
+			"load",
+			"availableBranches",
+			"obj",
+			"traverse",
+			"100",
+			"spheres[s]",
+			"10",
+			"assetsPath",
+			"loader",
+			"eeff16",
 			"40",
 			"4",
 			"10",
@@ -373,40 +448,7 @@
 			"gregfont_10",
 			"gregfont_04",
 			"gregfont_10",
-			"gemosaic",
-			"01",
-			"gemosaic",
-			"10",
-			"gemosaic",
-			"10",
-			"gemosaic",
-			"10",
-			"gemosaic",
-			"web_",
-			"web_01",
-			"gemosaic",
-			"bns_prototypes_",
-			"gemosaic",
-			"accenture_06",
-			"03",
-			"10",
-			"gemosaic",
-			"<<<<<<<",
-			"db_01",
-			"data-featherlight=\"image\"",
-			"data-featherlight=\"",
-			"/gemosaic",
-			"_07",
-			"sketching",
-			"<<<",
-			"ge_01",
-			"ge_splash",
-			"<li>",
-			"BNS",
-			"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-			"xxxxxxxxxxxxxxxxxxxxxxx",
-			"x.jpg",
-			".tiles"
+			"gemosaic"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -424,7 +466,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -433,15 +475,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10542,
+						"buffer_size": 10593,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								868,
-								868
+								9462,
+								9462
 							]
 						],
 						"settings":
@@ -451,56 +493,56 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 6119.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1613,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								297,
+								303
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 435.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "js/main.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8930,
+						"buffer_size": 17520,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3605,
-								3605
-							]
-						],
-						"settings":
-						{
-							"open_with_edit": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 4002.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "js/map.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1115,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								531,
-								531
+								12871,
+								12871
 							]
 						],
 						"settings":
@@ -511,39 +553,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 13650.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "css/style.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1556,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								796,
-								796
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1044.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

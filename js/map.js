@@ -21,7 +21,7 @@ map.on('load', function() {
         'type': 'fill-extrusion',
         'minzoom': 15,
         'paint': {
-            'fill-extrusion-color': '#da627d',
+            'fill-extrusion-color': '#feec6e',
             'fill-extrusion-height': {
                 'type': 'identity',
                 'property': 'height'

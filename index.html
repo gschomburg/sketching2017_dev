@@ -159,10 +159,11 @@
 <script id="vertexshader" type="x-shader/x-vertex">
 	// create a shared variable for the
 	// VS and FS containing the normal
-	uniform float amplitude;
-	attribute float displacement;
+	// uniform float amplitude;
+	// attribute float displacement;
 	varying vec3 vNormal;
 	varying vec2 vUv;
+	uniform float vOffset;
 
 	vec2 computeTexUV(vec2 _uv, vec3 _normal){
 
@@ -199,12 +200,13 @@
 	varying vec3 vNormal;
 	varying vec2 vUv;
 	uniform sampler2D texture1;
+	uniform float vOffset;
 
 	vec2 computeTexUV(vec3 _normal){
 		
 
 		float u = atan(_normal.x, _normal.z) / (2. * 3.1415926) + 0.5;
-		float v = asin(_normal.y) / 3.1415926 + 0.5;
+		float v = asin(_normal.y) / 3.1415926 + 0.5 ;
 		return vec2(u,v);
 
 	}

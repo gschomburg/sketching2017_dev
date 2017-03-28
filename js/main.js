@@ -7,66 +7,90 @@ console.log("el");
 var threejsInstance = [];
 var assetsPath = "assets/";
 var parts = [];
-var partNames = 
-[
-// "parts_fan.obj",
-// "parts_gearbox.obj",
-// "parts_hydrant.obj",
-// "parts_pipebolt.obj",
-// "parts_pipebox.obj",
-// "parts_pipecapacitor.obj",
-// "parts_piston.obj",
-// "parts_tube01.obj",
-// "parts_tubehydrant.obj",
-// "parts_tubejunction.obj",
-//"parts_tubeweirdframe.obj"
-"parts_pipe_01.obj",
-"parts_pipe_02.obj",
-"parts_pipe_03.obj",
-"parts_box_01.obj"
-];
-var dupcount = 40;
+var partNames =
+    [
+        "organic_001.obj",
+        "organic_002.obj",
+        "organic_003.obj",
+        "organic_004.obj",
+        "organic_005.obj",
+        "organic_006.obj",
+        "organic_007.obj",
+        "organic_008.obj",
+        "organic_009.obj",
+        "organic_010.obj",
+        // "nasa_test001.obj",
+        "machine_001.obj",
+        "machine_002.obj",
+        "machine_003.obj",
+        "machine_004.obj",
+        "machine_005.obj",
+        "machine_006.obj",
+        "machine_007.obj",
+        "machine_008.obj",
+        "machine_009.obj",
+        "machine_010.obj",
+    ];
+
+var connectors = [];
+var machineblocks = [];
+
+var dupcount = 5;
+
+var treeCount = 30;
+var treeComplexity = 10;
+
 var headerParts = [];
+var availableBranches = [];
 
 
-function createThreejsInstance(_container, _width, _height){
-	// Set the scene size.
-	// var width = _width;
-	// var height = _height;
 
-	// Set some camera attributes.
-	var VIEW_ANGLE = 45;
-	var ASPECT = _width / _height;
-	var NEAR = 0.1;
-	var FAR = 10000;
+function createThreejsInstance(_container, _width, _height) {
+    // Set the scene size.
+    // var width = _width;
+    // var height = _height;
 
-	// Get the DOM element to attach to
-	var container = document.querySelector(_container);
+    // Set some camera attributes.
+    var VIEW_ANGLE = 45;
+    var ASPECT = _width / _height;
+    var NEAR = 0.1;
+    var FAR = 10000;
 
-	// Create a WebGL renderer, camera
-	// and a scene
-	var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-	var camera =
-	    new THREE.PerspectiveCamera(
-	        VIEW_ANGLE,
-	        ASPECT,
-	        NEAR,
-	        FAR
-	    );
+    // Get the DOM element to attach to
+    var container = document.querySelector(_container);
 
-	var scene = new THREE.Scene();
+    // Create a WebGL renderer, camera
+    // and a scene
+    var renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true
+    });
+    var camera =
+        new THREE.PerspectiveCamera(
+            VIEW_ANGLE,
+            ASPECT,
+            NEAR,
+            FAR
+        );
 
-	// Add the camera to the scene.
-	scene.add(camera);
+    var scene = new THREE.Scene();
 
-	// Start the renderer.
-	renderer.setSize(_width, _height);
+    // Add the camera to the scene.
+    scene.add(camera);
 
-	// Attach the renderer-supplied
-	// DOM element.
-	container.appendChild(renderer.domElement);
+    // Start the renderer.
+    renderer.setSize(_width, _height);
 
-	return {container:container, scene:scene, camera:camera, renderer:renderer};
+    // Attach the renderer-supplied
+    // DOM element.
+    container.appendChild(renderer.domElement);
+
+    return {
+        container: container,
+        scene: scene,
+        camera: camera,
+        renderer: renderer
+    };
 }
 var headerInstance = createThreejsInstance('#header-graphic', 1100, 700);
 var charretteInstance = createThreejsInstance('#charrette-graphic', 400, 400);
@@ -118,16 +142,16 @@ container.appendChild(renderer.domElement);
 ////////////////////////////////////////////////////
 
 // create a point light
-const pointLight =
-  new THREE.PointLight(0xFFFFFF);
+// const pointLight =
+//     new THREE.PointLight(0xFFFFFF);
 
-// set its position
-pointLight.position.x = -200;
-pointLight.position.y = 150;
-pointLight.position.z = 130;
+// // set its position
+// pointLight.position.x = -200;
+// pointLight.position.y = 150;
+// pointLight.position.z = 130;
 
-// add to the scene
-headerInstance.scene.add(pointLight);
+// // add to the scene
+// headerInstance.scene.add(pointLight);
 
 // const pointLight2 =
 //   new THREE.PointLight(0xFFFFFF);
@@ -143,60 +167,97 @@ headerInstance.scene.add(pointLight);
 ////////////////////////////////////////////////////
 //header
 ////////////////////////////////////////////////////
-var spheres=[];
+// var spheres = [];
 
 var mesh_sketching;
 var mesh_in;
 var mesh_hardware;
-function initHeader(){
-	/*
-	for(var i=0; i<80; i++){
-		var s = addSphere(randRange(10, 40), .1, headerInstance);
 
-		s.position.x = randRange(-200, 200);
-		s.position.y = randRange(-80, 100);
-		s.position.z = randRange(-400, -500);
+function initHeader() {
+    //root part
+    for (var i = 0; i < treeCount; i++) {
+    	// crete the root part
+        var partIndex = Math.floor(randRange(0, parts.length));
+        var rootObj = parts[partIndex].clone();
+        
+        rootObj.rSpd = randRange(.3, .5);
+        headerParts.push(rootObj);
+        headerInstance.scene.add(rootObj);
+        
+        // find the available branches (mount points)
+        availableBranches = [];
+        rootObj.traverse(function(child) {
+            if (child.name.indexOf('branch') > -1) {
+                // mesh_sketching = child;
+                child.geometry.computeBoundingBox();
+                availableBranches.push(child);
+            }
+        });
 
-		s.rSpeed = new THREE.Vector3(randRange(-1,1), randRange(-1,1), randRange(-1,1));
-		spheres.push(s);
-	}
-	*/
+        // transform the root
 
-	for(var i=0;  i<parts.length; i++){
-		for(var c=0; c<dupcount; c++){
-			var obj = parts[i].clone();
-			obj.rSpd=randRange(-.5, .5);
-			headerParts.push(obj);
-			
-			var s =  randRange(.5, 2);
-			obj.scale.set(s,s,s);
-			obj.position.x = randRange(-10, 10);
-			obj.position.y = randRange(-5, 5);
-			obj.position.z = -20;
-			obj.rotation.x = randRange(-180, 180);
-			obj.rotation.y = randRange(-180, 180);
-			obj.rotation.z = randRange(-180, 180);
+        rootObj.position.x = randRange(-10, 10);
+        rootObj.position.y = randRange(-5, 12);
+        rootObj.position.z = randRange(-35, -20);
 
+        rootObj.rotation.x = randRange(0, Math.PI);
+        rootObj.rotation.y = randRange(0, Math.PI);
+        rootObj.rotation.z = randRange(0, Math.PI);
 
-			headerInstance.scene.add(obj);
-		}
-	}
+        var s = randRange(.5, 1);
+        rootObj.scale.set(s,s,s);
 
 
 
+        //*
+        // for(var i=0;  i<parts.length; i++){
+        for (var c = 0; c < treeComplexity; c++) {
+            var partIndex = Math.floor(randRange(0, parts.length));
+            var obj = parts[partIndex].clone();
 
-	// return;
-	//load in sketching text
-	var loader = new THREE.OBJLoader();
+            var branch = getAvailableBranch();
 
-	// load a resource
+            branch.add(obj);
+
+            var s = randRange(.8, 1.1);
+            obj.scale.set(s,s,s);
+
+            var upVector = new THREE.Vector3(0, 1, 0);
+            var normalsArray = branch.geometry.getAttribute('normal');
+            var branchNormal = new THREE.Vector3(normalsArray.array[0], normalsArray.array[1], normalsArray.array[2]);
+
+
+            var angle = upVector.angleTo(branchNormal);
+            var axis = new THREE.Vector3().crossVectors(upVector, branchNormal); //get the axis
+ 			axis.normalize();
+
+            var targetPosition = branch.geometry.boundingBox.getCenter();
+            // var targetPosition = branch.geometry.boundingBox.getCenter();
+            obj.position.x = targetPosition.x;
+            obj.position.y = targetPosition.y;
+            obj.position.z = targetPosition.z;
+
+            obj.rotateOnAxis(branchNormal, Math.random() * Math.PI);
+            obj.rotateOnAxis(axis, angle);
+            
+            //find the available branches
+            obj.traverse(function(child) {
+                if (child.name.indexOf('branch') > -1) {
+                    child.geometry.computeBoundingBox();
+                    availableBranches.push(child);
+                }
+            });
+        }
+    }
+    //load in sketching text
+    var loader = new THREE.OBJLoader();
+
+    // load resource
+
 	loader.load(
-		// resource URL
 		assetsPath + 'sk2017_lockup_v2.obj',
-		// Function when resource is loaded
 		function ( object ) {
 			headerInstance.scene.add( object );
-			
 			
 			object.position.x = -0;
 			object.position.y = 0;
@@ -205,12 +266,10 @@ function initHeader(){
 			object.traverse( function ( child ) {
 
         		if ( child instanceof THREE.Mesh ) {
-
-					child.material = shaderMaterial;
-					// console.log('mesh: '+child.name);
+                    //identify meshes for later maybe
+					child.material = shaderMaterialLogotype;
 					if(child.name.indexOf('Sketching_Mesh')>-1){
 						mesh_sketching = child;
-						console.log('found' + child.name);
 					}
 					if(child.name.indexOf('in_Mesh')>-1){
 						mesh_in = child;
@@ -221,233 +280,111 @@ function initHeader(){
 				}
 
 			});
-			//object.material = shaderMaterial;
 		}
+		
 	);
-}
-function partLoaded(object){
-	parts.push(object);
-	if(parts.length == partNames.length){
-		console.log('parts finished loaded');
-		initHeader();
-	}else{
-		console.log('still loading');
-	}
+
 }
 
-function loadPart(_name){
-	var partLoader = new THREE.OBJLoader();
-
-	// load a resource
-	partLoader.load(
-		// resource URL
-		assetsPath + _name,
-		function ( object ) {
-			// headerInstance.scene.add( object );
-			// object.position.x = -20;
-			// object.position.y = 20;
-			// object.position.z = -250;
-			// object.scale.set(100,100,100);
-			object.traverse( function ( child ) {
-
-        		if ( child instanceof THREE.Mesh ) {
-					child.material = shaderMaterial;
-				}
-
-			});
-			partLoaded(object);
-		}
-	);
-}
-function loadParts(){
-	for(var i=0; i<partNames.length; i++){
-		loadPart('parts/' + partNames[i]);
-	}
+function getAvailableBranch() {
+    // sample array at random
+    var index = Math.floor(randRange(0, availableBranches.length));
+    var branch = availableBranches[index];
+    availableBranches.splice(index, 1);
+    return branch;
 }
 
-
-
-function addSphere(_radius, _vertDistort, _instance){
-	//create a sphere
-	//warp it
-	//then add to scene
-	//return it
-
-	// Set up the sphere vars
-	var RADIUS = _radius;
-	var SEGMENTS = 6;
-	var RINGS = 6;
-
-	// Create a new mesh with
-	// sphere geometry - we will cover
-
-	// create the sphere's material
-	// var sphereMaterial =
-	//   new THREE.MeshLambertMaterial(
-	//     {
-	//       color: 0xeeff16,
-	//       shading: THREE.FlatShading
-	//     });
-
-	var sphere = new THREE.Mesh(
-
-	  new THREE.SphereGeometry(
-	    RADIUS,
-	    SEGMENTS,
-	    RINGS),
-
-	  shaderMaterial);
-
-	if(_vertDistort>0){
-		for(var v=0; v<sphere.geometry.vertices.length; v++){
-			var val = 1 + randRange(-_vertDistort, _vertDistort);
-			sphere.geometry.vertices[v].x = sphere.geometry.vertices[v].x *val;
-			sphere.geometry.vertices[v].y = sphere.geometry.vertices[v].y *val;
-			sphere.geometry.vertices[v].z = sphere.geometry.vertices[v].z *val;
-			// sphere.geometry.vertices[v].y+=randRange(-_vertDistort, _vertDistort);
-			// sphere.geometry.vertices[v].z+=randRange(-_vertDistort, _vertDistort);
-		}
-		sphere.geometry.computeFlatVertexNormals();
-		sphere.geometry.verticesNeedUpdate = true;
-	}
-
-	// Finally, add the sphere to the scene.
-	_instance.scene.add(sphere);
-	return sphere;
+function partLoaded(object) {
+    parts.push(object);
+    if (parts.length == partNames.length) {
+        console.log('parts finished loaded');
+        initHeader();
+        initCharrette();
+    } else {
+        console.log('still loading');
+    }
 }
 
-////////////////////////////////////////////////////
-//charrette graphic
-////////////////////////////////////////////////////
-var testsphere;
+function loadPart(_name) {
+    var partLoader = new THREE.OBJLoader();
 
-var colorMapLoader = new THREE.TextureLoader();
-//shader
-var vShader = $('#vertexshader');
-var fShader = $('#fragmentshader');
-
-var uniforms = {};
-// var attributes = {};
-
-//load in texture for uniforms
-//*
-var uniforms = {
-    texture1: { type: "t", value: colorMapLoader.load( assetsPath + 'color_v3.jpg' , function (texture) {
-    	texture.wrapS = THREE.RepeatWrapping;
-    	texture.wrapT = THREE.RepeatWrapping;
-    	texture.minFilter = THREE.LinearFilter;
-    	texture.needsUpdate = true;
-    	//texture.generateMipmaps=false;
-    	console.log(texture);
-    }) }
-};
-//*/
-/*
-uniforms:       uniforms,
-attributes:     attributes
-*/
-
-var shaderMaterial =
-new THREE.ShaderMaterial({
-	uniforms:       uniforms,
-	vertexShader:   vShader.text(),
-	fragmentShader: fShader.text()
-});
-
-function initCharrette(){
-	testsphere = addSphere(40, 0, charretteInstance);
-	testsphere.position.x = 100;
-	testsphere.position.z = -400;
-	testsphereB = addSphere(60, 0, charretteInstance);
-	testsphereB.position.x = -80;
-	testsphereB.position.z = -400;
-
-	
-	// testsphere.material =shaderMaterial;
-	// testsphereB.material =shaderMaterial;
-
-
-	testCubeA = new THREE.Mesh(
-
-	  new THREE.BoxGeometry(
-	    90, 90, 90),
-
-	  shaderMaterial);
-	charretteInstance.scene.add(testCubeA);
-	testCubeA.position.z = -400;
+    // load a resource
+    partLoader.load(
+        // resource URL
+        assetsPath + _name,
+        function(object) {
+            object.traverse(function(child) {
+                if (child instanceof THREE.Mesh) {
+                    child.material = shaderMaterial;
+                }
+            });
+            partLoaded(object);
+        }
+    );
 }
+
+function loadParts() {
+    for (var i = 0; i < partNames.length; i++) {
+        loadPart('parts/' + partNames[i]);
+    }
+}
+
+
+function initCharrette() {
+    //build a tree in the charrette
+
+    testCubeA = new THREE.Mesh(
+
+        new THREE.BoxGeometry(
+            90, 90, 90),
+
+        shaderMaterial);
+    charretteInstance.scene.add(testCubeA);
+    testCubeA.position.z = -400;
+}
+
+function initFooter(){
+    //build out a grid of the parts
+}
+
 var testCubeA;
-$(document).ready(function(){
-	loadParts();
-	initCharrette();
-	
 
-	// Schedule the first frame.
-	requestAnimationFrame(update);
+$(document).ready(function() {
+    loadParts();
+    // Schedule the first frame.
+    requestAnimationFrame(update);
 });
 
 
 ////////////////////////////////////////////////////
 //anim
 ////////////////////////////////////////////////////
-var aSin=0;
-var bSin=0;
-var cSin=0;
-function update () {
-  // Draw!
-  for(var i=0; i<threejsInstance.length; i++){
-  	 threejsInstance[i].renderer.render(threejsInstance[i].scene, threejsInstance[i].camera);
 
-  }
+function update() {
+    // loop through instances
+    for (var i = 0; i < threejsInstance.length; i++) {
+        threejsInstance[i].renderer.render(threejsInstance[i].scene, threejsInstance[i].camera);
 
- // headerInstance.renderer.render(headerInstance.scene, headerInstance.camera);
-  var scaler=.005;
+    }
 
-  for(var p=0; p<headerParts.length; p++){
-	headerParts[p].rotation.x += headerParts[p].rSpd * scaler;
-	headerParts[p].rotation.y += headerParts[p].rSpd * scaler;
-	headerParts[p].rotation.z += headerParts[p].rSpd * scaler;
+    // headerInstance.renderer.render(headerInstance.scene, headerInstance.camera);
+    var rotationSpeedScaler = .005;
 
-  }
+    for (var p = 0; p < headerParts.length; p++) {
+        headerParts[p].rotateY(headerParts[p].rSpd * rotationSpeedScaler);
+        // headerParts[p].rotateOnAxis ( headerParts[p].rotationAxis, headerParts[p].rSpd * rotationSpeedScaler );
+        // headerParts[p].rotation.x += headerParts[p].rSpd * rotationSpeedScaler;
+        // headerParts[p].rotation.y += headerParts[p].rSpd * rotationSpeedScaler;
+        // headerParts[p].rotation.z += headerParts[p].rSpd * rotationSpeedScaler;
 
-  for(var s=0; s<spheres.length; s++){
-	spheres[s].rotation.x += spheres[s].rSpeed.x * scaler;
-	spheres[s].rotation.y += spheres[s].rSpeed.y * scaler;
-	spheres[s].rotation.z += spheres[s].rSpeed.z * scaler;
+    }
 
-  }
-	testsphere.rotation.x += 2 * scaler;
-	testsphere.rotation.y += 1 * scaler;
-
-	testsphereB.rotation.x += 1 * scaler;
-	testsphereB.rotation.y += 3 * scaler;
-	testsphereB.rotation.z += 1 * scaler;
-
-	testCubeA.rotation.x += 1 * scaler;
-	testCubeA.rotation.y += 1 * scaler;
-	testCubeA.rotation.z += .5 * scaler;
-
-	aSin += .005;
-	bSin += .01;
-	cSin += .008;
-	//mess with sketching text
-	// if(mesh_sketching){
-	// 	// mesh_sketching.rotation.x += 1 * scaler;
-	// 	mesh_sketching.rotation.x -= Math.cos(aSin) * .003;
-	// 	mesh_sketching.rotation.y += Math.sin(aSin) * .001;
-	// 	// mesh_sketching.rotation.z += .5 * scaler;
-	// 	// mesh_in.rotation.y += 1 * scaler;
-	// 	// mesh_hardware.rotation.y += 1 * scaler;
-	// 	mesh_in.rotation.x += Math.cos(bSin) * .001;
-	// 	mesh_in.rotation.y -= Math.sin(bSin) * .001;
-	// 	mesh_hardware.rotation.x += Math.cos(cSin) * .001;
-	// 	mesh_hardware.rotation.y += Math.sin(cSin) * .002;
-		
-	// }
-	
-	// testsphere.geometry.normalsNeedUpdate = true;
-  // Schedule the next frame.
-  requestAnimationFrame(update);
+    if(testCubeA!=null){
+        testCubeA.rotation.x += 1 * rotationSpeedScaler;
+        testCubeA.rotation.y += 1 * rotationSpeedScaler;
+        testCubeA.rotation.z += .5 * rotationSpeedScaler;
+    }
+    requestAnimationFrame(update);
 }
 
 
@@ -455,9 +392,58 @@ function update () {
 //util
 ////////////////////////////////////////////////////
 
-function randRange(_min, _max){
-	return _min + (Math.random()*Math.abs(_max-_min));
+function randRange(_min, _max) {
+    return _min + (Math.random() * Math.abs(_max - _min));
 }
 
+///////////////////////////////////
+//shader materials
+///////////////////////////////////
+
+var colorMapLoader = new THREE.TextureLoader();
+
+//shader
+var vShader = $('#vertexshader');
+var fShader = $('#fragmentshader');
+
+var uniforms = {};
+
+var uniforms = {
+    texture1: {
+        type: "t",
+        value: colorMapLoader.load(assetsPath + 'color_v4.jpg', function(texture) {
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            texture.minFilter = THREE.LinearFilter;
+            texture.needsUpdate = true;
+        })
+    },
+    vOffset: 0
+};
+var uniformsLogotype = {
+    texture1: {
+        type: "t",
+        value: colorMapLoader.load(assetsPath + 'color_v3_logotype.jpg', function(texture) {
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            texture.minFilter = THREE.LinearFilter;
+            texture.needsUpdate = true;
+        })
+    },
+    vOffset: 0
+};
 
 
+var shaderMaterial =
+new THREE.ShaderMaterial({
+    uniforms: uniforms,
+    vertexShader: vShader.text(),
+    fragmentShader: fShader.text()
+});
+
+var shaderMaterialLogotype =
+new THREE.ShaderMaterial({
+    uniforms: uniformsLogotype,
+    vertexShader: vShader.text(),
+    fragmentShader: fShader.text()
+});
