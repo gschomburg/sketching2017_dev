@@ -19,7 +19,6 @@ var partNames =
         "organic_008.obj",
         "organic_009.obj",
         "organic_010.obj",
-        // "nasa_test001.obj",
         "machine_001.obj",
         "machine_002.obj",
         "machine_003.obj",
@@ -31,19 +30,19 @@ var partNames =
         "machine_009.obj",
         "machine_010.obj",
     ];
+var organicParts=[];
+var machineParts=[];
 
 var connectors = [];
 var machineblocks = [];
 
 var dupcount = 5;
 
-var treeCount = 30;
+var treeCount = 20;
 var treeComplexity = 10;
 
 var headerParts = [];
 var availableBranches = [];
-
-
 
 function createThreejsInstance(_container, _width, _height) {
     // Set the scene size.
@@ -85,6 +84,7 @@ function createThreejsInstance(_container, _width, _height) {
     // DOM element.
     container.appendChild(renderer.domElement);
 
+    //return an object of references
     return {
         container: container,
         scene: scene,
@@ -92,178 +92,61 @@ function createThreejsInstance(_container, _width, _height) {
         renderer: renderer
     };
 }
-var headerInstance = createThreejsInstance('#header-graphic', 1100, 700);
-var charretteInstance = createThreejsInstance('#charrette-graphic', 400, 400);
-threejsInstance.push(headerInstance);
-threejsInstance.push(charretteInstance);
-/*
-////////////////////////////////////////////////////
-//scene
-////////////////////////////////////////////////////
 
-// Set the scene size.
-const WIDTH = 1100;
-const HEIGHT = 700;
-
-// Set some camera attributes.
-const VIEW_ANGLE = 45;
-const ASPECT = WIDTH / HEIGHT;
-const NEAR = 0.1;
-const FAR = 10000;
-
-// Get the DOM element to attach to
-const container = document.querySelector('#header-graphic');
-
-// Create a WebGL renderer, camera
-// and a scene
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-const camera =
-    new THREE.PerspectiveCamera(
-        VIEW_ANGLE,
-        ASPECT,
-        NEAR,
-        FAR
-    );
-
-const scene = new THREE.Scene();
-
-// Add the camera to the scene.
-scene.add(camera);
-
-// Start the renderer.
-renderer.setSize(WIDTH, HEIGHT);
-
-// Attach the renderer-supplied
-// DOM element.
-container.appendChild(renderer.domElement);
-*/
-////////////////////////////////////////////////////
-//lights
-////////////////////////////////////////////////////
-
-// create a point light
-// const pointLight =
-//     new THREE.PointLight(0xFFFFFF);
-
-// // set its position
-// pointLight.position.x = -200;
-// pointLight.position.y = 150;
-// pointLight.position.z = 130;
-
-// // add to the scene
-// headerInstance.scene.add(pointLight);
-
-// const pointLight2 =
-//   new THREE.PointLight(0xFFFFFF);
-
-// // set its position
-// pointLight2.position.x = -200;
-// pointLight2.position.y = 150;
-// pointLight2.position.z = 130;
-
-
-// charretteInstance.scene.add(pointLight2);
+// var charretteInstance = createThreejsInstance('#charrette-graphic', 400, 400);
+// var archiveInstance = createThreejsInstance('#archive-graphics', 900, 400);
+// threejsInstance.push(charretteInstance);
+// threejsInstance.push(archiveInstance);
 
 ////////////////////////////////////////////////////
 //header
 ////////////////////////////////////////////////////
-// var spheres = [];
-
+var mesh_sketchingtext;
 var mesh_sketching;
 var mesh_in;
 var mesh_hardware;
 
+var headerRoots =[];
+
+var headerInstance;
 function initHeader() {
-    //root part
-    for (var i = 0; i < treeCount; i++) {
-    	// crete the root part
-        var partIndex = Math.floor(randRange(0, parts.length));
-        var rootObj = parts[partIndex].clone();
-        
-        rootObj.rSpd = randRange(.3, .5);
-        headerParts.push(rootObj);
-        headerInstance.scene.add(rootObj);
-        
-        // find the available branches (mount points)
-        availableBranches = [];
-        rootObj.traverse(function(child) {
-            if (child.name.indexOf('branch') > -1) {
-                // mesh_sketching = child;
-                child.geometry.computeBoundingBox();
-                availableBranches.push(child);
-            }
-        });
+    headerInstance = createThreejsInstance('#header-graphic', 1100, 700);
+    threejsInstance.push(headerInstance);
+    for(var t=0; t<treeCount; t++){
+        var tree = buildTree(treeComplexity, .7, 1);
 
-        // transform the root
+        //position
+        tree.position.x = randRange(-10, 10);
+        tree.position.y = randRange(-5, 10);
+        tree.position.z = randRange(-35, -20);
 
-        rootObj.position.x = randRange(-10, 10);
-        rootObj.position.y = randRange(-5, 12);
-        rootObj.position.z = randRange(-35, -20);
+        //rotation
+        // tree.rotation.x = randRange(0, Math.PI);
+        // tree.rotation.y = randRange(0, Math.PI);
+        // tree.rotation.z = randRange(0, Math.PI);
 
-        rootObj.rotation.x = randRange(0, Math.PI);
-        rootObj.rotation.y = randRange(0, Math.PI);
-        rootObj.rotation.z = randRange(0, Math.PI);
+        //scale
+        // var s = randRange(.5, 1);
+        // tree.scale.set(s,s,s);
 
-        var s = randRange(.5, 1);
-        rootObj.scale.set(s,s,s);
+        tree.rSpd = randRange(.1, .3);
 
-
-
-        //*
-        // for(var i=0;  i<parts.length; i++){
-        for (var c = 0; c < treeComplexity; c++) {
-            var partIndex = Math.floor(randRange(0, parts.length));
-            var obj = parts[partIndex].clone();
-
-            var branch = getAvailableBranch();
-
-            branch.add(obj);
-
-            var s = randRange(.8, 1.1);
-            obj.scale.set(s,s,s);
-
-            var upVector = new THREE.Vector3(0, 1, 0);
-            var normalsArray = branch.geometry.getAttribute('normal');
-            var branchNormal = new THREE.Vector3(normalsArray.array[0], normalsArray.array[1], normalsArray.array[2]);
-
-
-            var angle = upVector.angleTo(branchNormal);
-            var axis = new THREE.Vector3().crossVectors(upVector, branchNormal); //get the axis
- 			axis.normalize();
-
-            var targetPosition = branch.geometry.boundingBox.getCenter();
-            // var targetPosition = branch.geometry.boundingBox.getCenter();
-            obj.position.x = targetPosition.x;
-            obj.position.y = targetPosition.y;
-            obj.position.z = targetPosition.z;
-
-            obj.rotateOnAxis(branchNormal, Math.random() * Math.PI);
-            obj.rotateOnAxis(axis, angle);
-            
-            //find the available branches
-            obj.traverse(function(child) {
-                if (child.name.indexOf('branch') > -1) {
-                    child.geometry.computeBoundingBox();
-                    availableBranches.push(child);
-                }
-            });
-        }
+        headerRoots.push(tree);
+        headerInstance.scene.add(tree);
     }
+
     //load in sketching text
     var loader = new THREE.OBJLoader();
-
-    // load resource
-
 	loader.load(
 		assetsPath + 'sk2017_lockup_v2.obj',
 		function ( object ) {
 			headerInstance.scene.add( object );
-			
-			object.position.x = -0;
-			object.position.y = 0;
-			object.position.z = -15;
-			object.scale.set(5,5,5);
-			object.traverse( function ( child ) {
+			mesh_sketchingtext = object;
+			mesh_sketchingtext.position.x = -0;
+			mesh_sketchingtext.position.y = 0;
+			mesh_sketchingtext.position.z = -15;
+			mesh_sketchingtext.scale.set(5,5,5);
+			mesh_sketchingtext.traverse( function ( child ) {
 
         		if ( child instanceof THREE.Mesh ) {
                     //identify meshes for later maybe
@@ -278,11 +161,177 @@ function initHeader() {
 						mesh_hardware = child;
 					}
 				}
-
+            //once the lockup is loaded call reszie
+            resizeHeader();
 			});
 		}
-		
+        
 	);
+   
+}
+
+var testCubeA;
+
+var charretteInstance;
+function initCharrette() {
+    charretteInstance = createThreejsInstance('#charrette-graphic', 400, 400);
+    threejsInstance.push(charretteInstance);
+    //build a tree in the charrette
+
+    // testCubeA = new THREE.Mesh(
+
+    //     new THREE.BoxGeometry(
+    //         90, 90, 90),
+
+    //     shaderMaterial);
+    // charretteInstance.scene.add(testCubeA);
+    // testCubeA.position.z = -400;
+    var tree = buildTree(10, .05, 1);
+
+        //position
+        // tree.position.x = randRange(-10, 10);
+        // tree.position.y = randRange(-5, 10);
+        // tree.position.y = -4;
+        tree.position.z = -15;
+
+        //rotation
+        // tree.rotation.x = randRange(0, Math.PI);
+        // tree.rotation.y = randRange(0, Math.PI);
+        // tree.rotation.z = randRange(0, Math.PI);
+
+        //scale
+        // var s = randRange(.5, 1);
+        // tree.scale.set(s,s,s);
+
+        tree.rSpd = .2;//randRange(.1, .3);
+headerRoots.push(tree);
+        charretteInstance.scene.add(tree);
+
+        var treebottom = buildTree(10, .95, 1);
+
+        //position
+        // tree.position.x = randRange(-10, 10);
+        // tree.position.y = randRange(-5, 10);
+        // tree.position.y = -4;
+        treebottom.position.z = -15;
+        treebottom.rotation.x = Math.PI;
+        treebottom.rSpd = .2; //randRange(-.3, -.1);
+
+        headerRoots.push(treebottom);
+        charretteInstance.scene.add(treebottom);
+
+        resizeCharrette();
+}
+var archiveInstance;
+function initArchive(){
+    archiveInstance = createThreejsInstance('#archive-graphics', 900, 400);
+    threejsInstance.push(archiveInstance);
+    //build out a grid of the parts
+    //8x4
+    var cols=6;
+    var rows=3;
+    var xSpace=4.5;
+    var ySpace=3.5;
+    var offsetX = (cols/2 * -xSpace) + (xSpace*.5);
+    var offsetY = (rows/2 * ySpace) + (-ySpace*.9);
+    var p=0;
+    for(var r=0; r<rows; r++){
+        for(var c=0; c<cols; c++){
+            var obj;
+            if(Math.random()<.8){
+                obj = getRandomItem(machineParts).clone();
+            }else{
+                obj = getRandomItem(organicParts).clone();
+            }
+            // var obj = parts[p].clone();
+            // p++;
+            archiveInstance.scene.add(obj);
+            obj.position.x = offsetX + (c*xSpace);
+            obj.position.y = offsetY - (r*ySpace);
+            obj.position.z = -15;
+            var s = .8;
+            obj.scale.set(s,s,s);
+
+            obj.rSpd = randRange(.1, .3);
+            headerRoots.push(obj);
+        }
+    }
+    resizeArchive();
+}
+
+function buildTree(branchCount, machineWeight, maxBranchLevel){
+    // var partIndex = Math.floor(randRange(0, machineParts.length));
+    availableBranches = [];
+
+    var rootObj;
+    if(Math.random<machineWeight){
+        rootObj = getRandomItem(machineParts).clone();
+    }else{
+        rootObj = getRandomItem(organicParts).clone();
+    }
+
+    saveBranchPoints(rootObj, 0);
+
+    for (var c = 0; c < branchCount; c++) {
+            
+
+            var branch = getAvailableBranch();
+            if(branch==null){
+                // console.log('exiting no branches');
+                break;
+            }
+            var obj;
+            //get a part based on machine weight
+            if(Math.random()<machineWeight){
+                obj = getRandomItem(machineParts).clone();
+            }else{
+                obj = getRandomItem(organicParts).clone();
+            }
+
+            //if we're not at the max branch level find valid branches
+            if(branch.branchLevel<maxBranchLevel){
+                saveBranchPoints(obj, branch.branchLevel+1);
+            }else{
+
+              // console.log(branch.branchLevel + ' :branchmax level');
+            }
+
+            //position the part
+            var targetPosition = branch.geometry.boundingBox.getCenter();
+            obj.position.x = targetPosition.x;
+            obj.position.y = targetPosition.y;
+            obj.position.z = targetPosition.z;
+
+            //rotate the part
+            var upVector = new THREE.Vector3(0, 1, 0);
+            var normalsArray = branch.geometry.getAttribute('normal');
+            var branchNormal = new THREE.Vector3(normalsArray.array[0], normalsArray.array[1], normalsArray.array[2]);
+
+            var angle = upVector.angleTo(branchNormal);
+            var axis = new THREE.Vector3().crossVectors(upVector, branchNormal); //get the axis
+            axis.normalize();
+
+            obj.rotateOnAxis(branchNormal, Math.random() * Math.PI);
+            obj.rotateOnAxis(axis, angle);
+            
+            //scale the part
+            // var s = randRange(.8, 1.1);
+            // obj.scale.set(s,s,s);
+
+            branch.add(obj);
+        }
+    return rootObj;
+}
+function saveBranchPoints(obj, level){
+    obj.traverse(function(child) {
+        if (child.name.indexOf('branch') > -1) {
+            child.geometry.computeBoundingBox();
+            child.branchLevel = level;
+            availableBranches.push(child);
+        }
+    });
+}
+function addBranch(){
 
 }
 
@@ -294,14 +343,13 @@ function getAvailableBranch() {
     return branch;
 }
 
-function partLoaded(object) {
-    parts.push(object);
-    if (parts.length == partNames.length) {
-        console.log('parts finished loaded');
-        initHeader();
-        initCharrette();
-    } else {
-        console.log('still loading');
+
+
+
+
+function loadParts() {
+    for (var i = 0; i < partNames.length; i++) {
+        loadPart('parts/' + partNames[i]);
     }
 }
 
@@ -318,43 +366,97 @@ function loadPart(_name) {
                     child.material = shaderMaterial;
                 }
             });
-            partLoaded(object);
+            partLoaded(object, _name);
         }
     );
 }
 
-function loadParts() {
-    for (var i = 0; i < partNames.length; i++) {
-        loadPart('parts/' + partNames[i]);
+function partLoaded(object, name) {
+    //organize the parts
+    if(name.indexOf('organic')>-1){
+        organicParts.push(object);
+    }
+    if(name.indexOf('machine')>-1){
+        machineParts.push(object);
+    }
+    parts.push(object);
+    if (parts.length == partNames.length) {
+        console.log('parts finished loaded');
+        //init all the threejs instances
+        initHeader();
+        initCharrette();
+        initArchive();
+    } else {
+        // console.log(name + 'still loading');
     }
 }
 
+////////////////////////////////////////////////////
+//resize ing
+////////////////////////////////////////////////////
+window.addEventListener( 'resize', onWindowResize, false );
 
-function initCharrette() {
-    //build a tree in the charrette
+function onWindowResize(){
 
-    testCubeA = new THREE.Mesh(
+    resizeHeader();
+    resizeCharrette();
+    // for (var i = 0; i < threejsInstance.length; i++) {
+    //     threejsInstance[i].renderer.render(threejsInstance[i].scene, threejsInstance[i].camera);
 
-        new THREE.BoxGeometry(
-            90, 90, 90),
-
-        shaderMaterial);
-    charretteInstance.scene.add(testCubeA);
-    testCubeA.position.z = -400;
+    // }
+    resizeArchive();
 }
 
-function initFooter(){
-    //build out a grid of the parts
+var headerMinHeight = 250;
+var headerMaxHeight = 600;
+var headerMinWidth = 450;
+
+function resizeHeader(){
+    // var contentWidth = $('#body-content').width();
+    var cWidth = clamp($('#body-content').width(), headerMinWidth, 2000);
+    var ratio =2.5/4.5;
+    var cHeight = clamp(cWidth*(ratio), headerMinHeight, headerMaxHeight);
+
+    //set the height of the container so the canvas hangs down
+    $('#header-graphic').height(cHeight*.85);
+
+    //position text
+    mesh_sketchingtext.position.x = -2.5;
+    mesh_sketchingtext.position.y = 1.5;
+    // mesh_sketchingtext.position.z = -15;
+    mesh_sketchingtext.scale.set(7,7,7);
+
+    headerInstance.camera.aspect = cWidth / cHeight;
+    headerInstance.camera.updateProjectionMatrix();
+
+    headerInstance.renderer.setSize( cWidth, cHeight );
 }
+function colSize(){
+    var w = $('.col-full').width();
+    if(w<480){return w*.8}
+    return Math.floor(w*.3333);
+}
+function resizeCharrette(){
+    var width=colSize();
+    charretteInstance.camera.aspect = width / width;
+    charretteInstance.camera.updateProjectionMatrix();
 
-var testCubeA;
+    charretteInstance.renderer.setSize( width, width );
+}
+function resizeArchive(){
+    var ratio =4/9;
+    // var contentWidth = $('#body-content').width();
+    var cWidth = Math.floor(clamp($('#body-content').width(), headerMinWidth, 900));
+    archiveInstance.camera.aspect = cWidth / (cWidth * ratio);
+    archiveInstance.camera.updateProjectionMatrix();
 
-$(document).ready(function() {
-    loadParts();
-    // Schedule the first frame.
-    requestAnimationFrame(update);
-});
+    archiveInstance.renderer.setSize( cWidth, (cWidth * ratio) );
+    // var cHeight = 400;
+    // archiveInstance.camera.aspect = window.innerWidth / cHeight;
+    // archiveInstance.camera.updateProjectionMatrix();
 
+    // archiveInstance.renderer.setSize( window.innerWidth, cHeight );
+}
 
 ////////////////////////////////////////////////////
 //anim
@@ -370,8 +472,8 @@ function update() {
     // headerInstance.renderer.render(headerInstance.scene, headerInstance.camera);
     var rotationSpeedScaler = .005;
 
-    for (var p = 0; p < headerParts.length; p++) {
-        headerParts[p].rotateY(headerParts[p].rSpd * rotationSpeedScaler);
+    for (var p = 0; p < headerRoots.length; p++) {
+        headerRoots[p].rotateY(headerRoots[p].rSpd * rotationSpeedScaler);
         // headerParts[p].rotateOnAxis ( headerParts[p].rotationAxis, headerParts[p].rSpd * rotationSpeedScaler );
         // headerParts[p].rotation.x += headerParts[p].rSpd * rotationSpeedScaler;
         // headerParts[p].rotation.y += headerParts[p].rSpd * rotationSpeedScaler;
@@ -387,6 +489,16 @@ function update() {
     requestAnimationFrame(update);
 }
 
+/*
+var helper = new THREE.BoundingBoxHelper(someObject3D, 0xff0000);
+helper.update();
+// If you want a visible bounding box
+scene.add(helper);
+// If you just want the numbers
+console.log(helper.box.min);
+console.log(helper.box.max);
+*/
+
 
 ////////////////////////////////////////////////////
 //util
@@ -394,6 +506,20 @@ function update() {
 
 function randRange(_min, _max) {
     return _min + (Math.random() * Math.abs(_max - _min));
+}
+
+function getRandomItem(_array){
+    var partIndex = Math.floor(randRange(0, _array.length));
+    return _array[partIndex];
+}
+function clamp(val, min, max){
+    if(val<min){
+        val = min;
+    }
+    if(val>max){
+        val = max;
+    }
+    return val;
 }
 
 ///////////////////////////////////
@@ -446,4 +572,10 @@ new THREE.ShaderMaterial({
     uniforms: uniformsLogotype,
     vertexShader: vShader.text(),
     fragmentShader: fShader.text()
+});
+
+$(document).ready(function() {
+    loadParts();
+    // Schedule the first frame.
+    requestAnimationFrame(update);
 });
