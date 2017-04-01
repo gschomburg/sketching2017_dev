@@ -101,22 +101,25 @@ p{
 }*/
 
 .cols{
+	display: -webkit-flex;
+	-webkit-flex-wrap: wrap;
+
 	display: flex;
 	flex-wrap: wrap;
 }
 
 .cols .col1-3{
+	-webkit-flex:0 0 33.33%;
 	flex:0 0 33.33%;
-	/*flex-basis: 100%;*/
 }
 .cols .col2-3{
+	-webkit-flex:0 0 66.66%;
 	flex:0 0 66.66%;
-	/*flex-basis: 66.66%;*/
 	padding-right: 1.5em;
 }
 .cols .col-full{
+	-webkit-flex:0 0 100%;
 	flex:0 0 100%;
-	/*flex-basis: 100%;*/
 }
 
 #locations .cols .col1-3{
@@ -253,9 +256,11 @@ ul{
 
 @media only screen and (max-width: 480px) {
 	.cols .col2-3{
+		-webkit-flex:0 0 100%;
 		flex:0 0 100%;
 	}
 	.cols .col1-3{
+		-webkit-flex:0 0 80%;
 		flex:0 0 80%;
 	}
 	#map{
