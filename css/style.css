@@ -29,21 +29,28 @@ white
 .bg-mustard{
 	background-color: #feec6e;
 	/*background-color: #00ff00;*/
+	color: #206b77;
+}
+.bg-mustard.hide-bg{
+	background-color: transparent;
 }
 .bg-sam{
 	background-color: #ee564b;
+	color: #feec6e;
 }
 .bg-green{
 	background-color: #31a6b8;
+	color: #feec6e;
 }
 
 body{
 	background-color: #feec6e;
 	/*background-color: #00ff00;*/
 	font-family: 'Josefin Sans', sans-serif;
-	font-size: 18px;
+	font-size: 20px;
 	margin: 0;
 	color:#292c2d;
+	line-height: 1.2em;
 }
 
 h1{
@@ -52,17 +59,26 @@ h1{
 	margin: 0;
 	font-size: 1.8em;
 }
+.img-header{
+	height: 3em;
+}
 div{
 	box-sizing: border-box;
 }
 p{
 	margin-top: 0;
+	/*font-size: 1.2em;*/
+}
+.col-full.header-pad{
+	margin-bottom: 2em;
 }
 
 .details{
 	/*font-sze: 24px;*/
 	font-size: 1.3em;
+	line-height: 1.3em;
 	font-style: italic;
+	/*font-weight: 600;*/
 	margin-bottom: 1em;
 }
 
@@ -90,6 +106,18 @@ p{
 	width: 78%;
 	display: block;
 	margin-bottom: 1.5em;
+}
+#header-bg{
+	width: 70%;
+	min-width: 420px;
+	max-width: 800px;
+	position: absolute;
+	top:0;
+	z-index:-2;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	/*opacity: 0.5;*/
 }
 /*.cols{
 	display: flex;
