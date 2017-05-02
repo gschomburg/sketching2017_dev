@@ -108,9 +108,9 @@ p{
 	margin-bottom: 1.5em;
 }
 #header-bg{
-	width: 70%;
+	width: 90%;
 	min-width: 420px;
-	max-width: 800px;
+	max-width: 1000px;
 	position: absolute;
 	top:0;
 	z-index:-2;
