@@ -119,6 +119,30 @@ p{
 	margin: 0 auto;
 	/*opacity: 0.5;*/
 }
+
+.bg-sam a.website,
+.bg-white a.website
+{
+	/*font-size: .7em;*/
+	/*font-weight: 600;*/
+	/*text-transform: uppercase;*/
+	background-color: transparent;
+	color: #feec6e;
+	padding:0;
+	text-decoration: underline;
+	/*outline: 1px solid #feec6e;*/
+}
+.bg-white a.website{
+	color: black;
+}
+.bg-sam a.website:hover{
+	color:  #feec6e;
+	background-color: transparent;
+}
+.bg-white a.website:hover{
+	color: black;
+	background-color: transparent;
+}
 /*.cols{
 	display: flex;
 

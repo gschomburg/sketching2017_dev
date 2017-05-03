@@ -119,16 +119,6 @@ function initHeader() {
         tree.position.x = randRange(-10, 10);
         tree.position.y = randRange(-5, 10);
         tree.position.z = randRange(-35, -20);
-
-        //rotation
-        // tree.rotation.x = randRange(0, Math.PI);
-        // tree.rotation.y = randRange(0, Math.PI);
-        // tree.rotation.z = randRange(0, Math.PI);
-
-        //scale
-        // var s = randRange(.5, 1);
-        // tree.scale.set(s,s,s);
-
         tree.rSpd = randRange(.1, .3);
 
         headerRoots.push(tree);
@@ -170,59 +160,53 @@ function initHeader() {
    
 }
 
-var testCubeA;
-
+var charretteTreeTop;
+var charretteTreeBottom;
 var charretteInstance;
+
 function initCharrette() {
     charretteInstance = createThreejsInstance('#charrette-graphic', 400, 400);
     threejsInstance.push(charretteInstance);
-    //build a tree in the charrette
 
-    // testCubeA = new THREE.Mesh(
+    charretteTreeTop = buildTree(10, .05, 1);
+    charretteTreeTop.position.z = -15;
+    charretteTreeTop.rSpd = .2;
+    // headerRoots.push(charretteTreeTop);
+    charretteInstance.scene.add(charretteTreeTop);
 
-    //     new THREE.BoxGeometry(
-    //         90, 90, 90),
+    charretteTreeBottom = buildTree(10, .95, 1);
+    charretteTreeBottom.position.z = -15;
+    charretteTreeBottom.rotation.x = Math.PI;
+    charretteTreeBottom.rSpd = .2;
+    // headerRoots.push(charretteTreeBottom);
+    charretteInstance.scene.add(charretteTreeBottom);
 
-    //     shaderMaterial);
-    // charretteInstance.scene.add(testCubeA);
-    // testCubeA.position.z = -400;
-    var tree = buildTree(10, .05, 1);
+    resizeCharrette();
 
-        //position
-        // tree.position.x = randRange(-10, 10);
-        // tree.position.y = randRange(-5, 10);
-        // tree.position.y = -4;
-        tree.position.z = -15;
-
-        //rotation
-        // tree.rotation.x = randRange(0, Math.PI);
-        // tree.rotation.y = randRange(0, Math.PI);
-        // tree.rotation.z = randRange(0, Math.PI);
-
-        //scale
-        // var s = randRange(.5, 1);
-        // tree.scale.set(s,s,s);
-
-        tree.rSpd = .2;//randRange(.1, .3);
-headerRoots.push(tree);
-        charretteInstance.scene.add(tree);
-
-        var treebottom = buildTree(10, .95, 1);
-
-        //position
-        // tree.position.x = randRange(-10, 10);
-        // tree.position.y = randRange(-5, 10);
-        // tree.position.y = -4;
-        treebottom.position.z = -15;
-        treebottom.rotation.x = Math.PI;
-        treebottom.rSpd = .2; //randRange(-.3, -.1);
-
-        headerRoots.push(treebottom);
-        charretteInstance.scene.add(treebottom);
-
-        resizeCharrette();
+    $( charretteInstance.container).mousemove(charretteMouse);
+    $( charretteInstance.container).mouseleave(function(){
+        charretteInstance.isOver=false;
+    });
 }
+
+var cTopSpdY = 0; //new THREE.Euler(0, 0, 0);
+var cBottomSpdY = 0//new THREE.Euler(Math.PI, 0, 0);
+function charretteMouse(event){
+    charretteInstance.isOver=true;
+    var x = event.offsetX / $(charretteInstance.container).width();
+    var y = event.offsetY / $(charretteInstance.container).height();
+
+    var msg = "Handler for .mousemove() called at ";
+    msg += x + ", " + y;
+    console.log(msg);
+
+    cTopSpdY = (x*2)-1; //new THREE.Euler(0, Math.PI*2*x, 0);
+    cBottomSpdY = (y*2)-1; //new THREE.Euler(Math.PI, , 0);
+}
+
 var archiveInstance;
+var archiveObj=[]; //multi dimensional array
+
 function initArchive(){
     archiveInstance = createThreejsInstance('#archive-graphics', 900, 400);
     threejsInstance.push(archiveInstance);
@@ -236,6 +220,7 @@ function initArchive(){
     var offsetY = (rows/2 * ySpace) + (-ySpace*.9);
     var p=0;
     for(var r=0; r<rows; r++){
+        var rowObjs = [];
         for(var c=0; c<cols; c++){
             var obj;
             if(Math.random()<.8){
@@ -253,10 +238,29 @@ function initArchive(){
             obj.scale.set(s,s,s);
 
             obj.rSpd = randRange(.1, .3);
-            headerRoots.push(obj);
+            // headerRoots.push(obj);
+            rowObjs.push(obj);
         }
+        archiveObj.push(rowObjs);
     }
     resizeArchive();
+    $( archiveInstance.container).mousemove(archiveMouse);
+    $( archiveInstance.container).mouseleave(function(){
+        archiveInstance.isOver=false;
+        aMouseX = -1;
+        aMouseY = -1;
+    });
+}
+var aMouseX = -1; //new THREE.Euler(0, 0, 0);
+var aMouseY = -1//new THREE.Euler(Math.PI, 0, 0);
+function archiveMouse(event){
+    archiveInstance.isOver=true;
+    aMouseX = event.offsetX / $(archiveInstance.container).width();
+    aMouseY = event.offsetY / $(archiveInstance.container).height();
+
+    // var msg = "archive for .mousemove() called at ";
+    // msg += aMouseX + ", " + aMouseY;
+    // console.log(msg);
 }
 
 function buildTree(branchCount, machineWeight, maxBranchLevel){
@@ -342,10 +346,6 @@ function getAvailableBranch() {
     availableBranches.splice(index, 1);
     return branch;
 }
-
-
-
-
 
 function loadParts() {
     for (var i = 0; i < partNames.length; i++) {
@@ -463,31 +463,84 @@ function resizeArchive(){
 ////////////////////////////////////////////////////
 
 function update() {
-    // loop through instances
-    for (var i = 0; i < threejsInstance.length; i++) {
-        threejsInstance[i].renderer.render(threejsInstance[i].scene, threejsInstance[i].camera);
 
-    }
 
     // headerInstance.renderer.render(headerInstance.scene, headerInstance.camera);
     var rotationSpeedScaler = .005;
 
     for (var p = 0; p < headerRoots.length; p++) {
         headerRoots[p].rotateY(headerRoots[p].rSpd * rotationSpeedScaler);
-        // headerParts[p].rotateOnAxis ( headerParts[p].rotationAxis, headerParts[p].rSpd * rotationSpeedScaler );
-        // headerParts[p].rotation.x += headerParts[p].rSpd * rotationSpeedScaler;
-        // headerParts[p].rotation.y += headerParts[p].rSpd * rotationSpeedScaler;
-        // headerParts[p].rotation.z += headerParts[p].rSpd * rotationSpeedScaler;
-
     }
 
-    if(testCubeA!=null){
-        testCubeA.rotation.x += 1 * rotationSpeedScaler;
-        testCubeA.rotation.y += 1 * rotationSpeedScaler;
-        testCubeA.rotation.z += .5 * rotationSpeedScaler;
+    if(charretteTreeTop !=null){
+        charretteTreeTop.rotateY(cTopSpdY *.05);
+        charretteTreeBottom.rotateY(cBottomSpdY*.05);
+
+        if(charretteInstance.isOver!=true){
+            cTopSpdY *= .95;
+            cBottomSpdY *=.95
+        }
+    }
+    if(archiveInstance !=null){
+        //set rotation speeds for grids
+        var cols=6;
+        var rows=3;
+        //pick a column and row
+        var activeCol = Math.floor(aMouseX*cols);
+        var activeRow = Math.floor(aMouseY*rows);
+        // archiveObj[activeCol][activeRow].rotateY(.05);
+        // console.log(c +"," +r);
+        for(var r=0; r<rows; r++){
+            for(var c=0; c<cols; c++){
+                var spd = .008;
+                if(r==activeRow && c == activeCol){
+                    spd = .06;
+                }
+                archiveObj[r][c].rotateY(spd);
+            }
+        }
+    }
+
+    // loop through instances
+    for (var i = 0; i < threejsInstance.length; i++) {
+        
+        if( onScreen(threejsInstance[i].container) ){
+           threejsInstance[i].renderer.render(threejsInstance[i].scene, threejsInstance[i].camera);
+            // $(threejsInstance[i].container).css('border', '1px solid blue');
+        }
     }
     requestAnimationFrame(update);
 }
+
+function onScreen(_container){
+    var maxScroll = (window.getWinSize()[1]*0.8) + scrollTop();
+    var minScroll = scrollTop(); //minScroll + $(_container).height();
+    if($(_container).offset().top<maxScroll && $(_container).offset().top + $(_container).height()>minScroll){
+         // console.log(_container, minScroll, minScroll);
+        return true;
+    }
+    return false;
+}
+
+////////////////////////////////
+//UTILS for dealing with IE windows
+function scrollTop(){
+    var top = (document.documentElement && document.documentElement.scrollTop) || 
+              document.body.scrollTop;
+    return top;
+}
+window.getWinSize = function(){
+    if(window.innerWidth!= undefined){
+        return [window.innerWidth, window.innerHeight];
+    }
+    else{
+        var B= document.body, 
+        D= document.documentElement;
+        return [Math.max(D.clientWidth, B.clientWidth),
+        Math.max(D.clientHeight, B.clientHeight)];
+    }
+}
+
 
 /*
 var helper = new THREE.BoundingBoxHelper(someObject3D, 0xff0000);
