@@ -11,8 +11,8 @@
 	<meta property="og:title" content="Radical Hardware">
 	<meta property="og:type" content="website">
 	<!--update urls-->
-	<meta property="og:url" content="http://designergroupies.com/sketching2017/p_v7a/">
-	<meta property="og:image" content="http://designergroupies.com/sketching2017/p_v7a/images/header_img.jpg">
+	<meta property="og:url" content="http://sketching-in-hardware.com/">
+	<meta property="og:image" content="http://sketching-in-hardware.com/images/header_img.jpg">
 	<meta property="og:image:type" content="image/jpeg">
 	<meta property="og:image:width" content="1200">
 	<meta property="og:image:height" content="790">
@@ -63,8 +63,7 @@
 				</div>
 			</div>
 			<div class="col2-3">
-				<p>Charrette is a term I'm borrowing from architecture as an alternative to "hackathon." I plan for it to be similar to a hackathon, but with a tighter focus. It's likely to feature a combination of visits to Detroit locations, presentations by Detroit experts, and the opportunity to spend all night talking/designing/inventing.
-				<p>Quisque facilisis maximus faucibus. Suspendisse sed neque ipsum. Nulla rutrum quam et dolor sollicitudin bibendum. Proin imperdiet viverra augue commodo facilisis. Mauris arcu diam, auctor pellentesque mi id, sodales sollicitudin sapien. Aenean finibus urna eu tellus volutpat, sit amet fermentum elit interdum. Mauris euismod massa libero, imperdiet sollicitudin <a href="">Quisque facilisis maximus</a> ut. Nam et ante mollis, condimentum lectus nec, dictum turpis. Duis commodo porttitor condimentum. Vivamus aliquam laoreet venenatis. Sed id imperdiet enim. Phasellus dictum ex erat, nec cursus neque vehicula id. Sed at eleifend velit, et porttitor lectus. Donec quis leo id risus tempor commodo vel a sem. Nunc cursus condimentum nunc eget hendrerit.
+				<p>This charrette focuses on the way that potent tools/technologies have the potential to reorganize human society, in ways that are predicted or desired-and sometimes ways that are not. It's about implements and the institutions that grow to condone, perpetuate, and extend them. Responding to a set of broad human challenges, we will sketch new ideas that could be built in the reality of 2017. Using those ideas as starting points, we will imagine what 2030 might look like if our ideas were to grow to scale.
 			</div>
 			<div class="col1-3">
 				<div class="" id="charrette-graphic"></div>
@@ -79,7 +78,9 @@
 			<div class="col1-3">
 					<div class="location">
 						<span><a href="https://goo.gl/maps/JjEToyPnZho">Masonic Temple</a></span>
-						<span>Venue, [ballroom name]</span>
+						<span>Venue</span>
+						<span>Fri: Fountain Ballroom</span>
+						<span>Sat &amp; Sun: Crystal Ballroom</span>
 						<span><a class="website" href="http://www.themasonic.com/">themasonic.com</a></span>
 						<span>500 Temple Street</span>
 						<span>Detroit, MI 48201-2693</span>
@@ -141,7 +142,6 @@
 			<!-- <p>Quisque facilisis maximus faucibus. Suspendisse sed neque ipsum. Nulla rutrum quam et dolor sollicitudin bibendum. Proin imperdiet viverra augue commodo facilisis. Mauris arcu diam, auctor pellentesque mi id, sodales sollicitudin sapien. Aenean finibus urna eu tellus volutpat, sit ame -->
 				<div class="sponsor clearfix">
 					<div id="knight-logo"><img src="images/logo_knight_crop_blk.png"></div>
-					<!-- <h2>Knight Foundation</h2> -->
 					<a href="http://www.knightfoundation.org/">knightfoundation.org</a>
 					<p>The John S. and James L. Knight Foundation is an American non-profit foundation dedicated to supporting "transformational ideas that promote quality journalism, advance media innovation, engage communities and foster the arts."
 				</div>
@@ -154,6 +154,11 @@
 					<div class="logo"><img src="images/logo_techtown_crop_blk.png"></div>
 					<a href="http://techtowndetroit.org/">techtowndetroit.org</a>
 					<p>TechTown is an urban research and technology business park located just north of the Edsel Ford Freeway in the New Center area of Detroit.
+				</div>
+				<div class="sponsor clearfix">
+					<div class="logo"><img src="images/logo_spark_crop_blk.png"></div>
+					<a href="https://www.sparkfun.com/">sparkfun.com</a>
+					<p>[TBD]Nulla rhoncus erat ac dui laoreet, non efficitur dui maximus. Nunc dapibus, magna in tincidunt pulvinar, arcu leo euismod sapien, ut laoreet neque tortor vitae eros. Ut sit amet dui pellentesque, elementum massa vel, malesuada ligula. Fusce consectetur felis quis nibh vulputate, sed dictum sapien porta.
 				</div>
 				<div class="sponsor clearfix">
 					<div class="logo"><img src="images/logo_thingm_crop.png"></div>
@@ -172,7 +177,7 @@
 				<img class="img-header" src="images/h_archive_green.svg">
 			</div>
 			<div class="col2-3">
-				<p>Quisque facilisis maximus faucibus. Suspendisse sed neque ipsum. Nulla rutrum quam et dolor sollicitudin bibendum. Proin imperdiet viverra augue commodo facilisis. Mauris arcu diam, auctor pellentesque mi id, sodales sollicitudin sapien. Aenean finibus urna eu tellus volutpat, sit ame
+				<p>[TBD]Quisque facilisis maximus faucibus. Suspendisse sed neque ipsum. Nulla rutrum quam et dolor sollicitudin bibendum. Proin imperdiet viverra augue commodo facilisis. Mauris arcu diam, auctor pellentesque mi id, sodales sollicitudin sapien. Aenean finibus urna eu tellus volutpat, sit ame
 			<ul>
 				<li><a href="http://sketching-in-hardware.com/2015/"><span class="date">2015</span> Tucson, Arizona</a></li>
 				<li><a href="http://sketching-in-hardware.com/2014/"><span class="date">2014</span> Berlin, Germany</a></li>
@@ -246,35 +251,8 @@
 
 	void main() {
 
-	  // calc the dot product and clamp
-	  // 0 -> 1 rather than -1 -> 1
-	  /*
-	  vec3 light = vec3(0.5, 0.2, 1.0);
-
-	  // ensure it's normalized
-	  light = normalize(light);
-
-	  // calculate the dot product of
-	  // the light to the vertex normal
-	  float dProd = max(0.0,
-	                    dot(vNormal, light));
-	   */
-
-	  // feed into our frag colour
-	  // gl_FragColor = vec4((vNormal.x+1.0)*.5, // R
-	  //                     (vNormal.y+1.0)*.5, // G
-	  //                     (vNormal.z+1.0)*.5, // B
-	  //                     1.0);  // A
-	  // gl_FragColor = vec4(0.5, 0.2, 1.0, 1.0);
-	  //gl_FragColor = texture2D(texture1, vUv);
-
 	  gl_FragColor = texture2D(texture1, computeTexUV(vNormal));
-	  //gl_FragColor.rgb = vNormal;
-	//gl_FragColor.rgba = vec4(0., 0., 0., 1.);
-	 	// gl_FragColor.a = 1.;
- 	//	gl_FragColor.rg = computeTexUV(vNormal).xy;
-//
-
+	  
 	}
 </script>
 <script src="libs/three.min.js"></script>
